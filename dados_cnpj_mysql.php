@@ -2,8 +2,8 @@
 
 
     $servername = "localhost";
-    $user = "root";
-    $pass ="Vinger10@";
+    $user = "Usuario";
+    $pass ="senha";
     $banco = "cnpj";
 
     $dataReferencia = '28/11/2023';
