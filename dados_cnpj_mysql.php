@@ -2,8 +2,8 @@
 
 
     $servername = "localhost";
-    $user = "root";
-    $pass ="Vinger10@";
+    $user = "Username";//Coloque neste campo seu usuario de conexão com o banco
+    $pass ="Senha";//Coloque neste campo sua senha para conexão com o banco de dados
     $banco = "cnpj";
 
     $dataReferencia = '28/11/2023';
@@ -360,26 +360,20 @@
             }
             fclose($fhandler);
             echo"File closed succesfully";
-            for ($i = 0; $i < count($values); $i ++ ) {
-                        
-                $pair = array($values[$i]);
-            
-                var_dump($pair);
+            for ($i = 0; $i < count($values); $i += 2) {
+                $pair = array($values[$i], $values[$i + 1]);
+                $pairs[] = "('" . implode("','", $pair) . "')"; 
                 
-            
-                // Execute the SQL query when $i is a multiple of 2 and not equal to 0
-                if (($i + 1) % 2 == 0 || $i == count($values) - 1)  {
-                    $sql = $sql_estabele ."(". implode(", ", $pair) . ")";
-            
-                    
+                // Execute the SQL query as usual
+                if ($i % 2 == 0 && $i != 0) {
+                    $sql = $sql_estabele . implode(", ", $pairs);
                     echo $sql . "\n";
             
                     if (!mysqli_query($conn, $sql)) {
                         $errorMessage = mysqli_error($conn);
                         die($errorMessage);
                     }
-
-                    $pair = array();
+                    $pairs = array();
                 }
             }
             
@@ -443,18 +437,17 @@
         
             }
             fclose($fhandler);
-            echo"File closed succesfully";
-            for ($i = 0; $i < count($values); $i ++ ) {
+            echo"File closed succesfully";value: 
+            for ($i = 0; $i < count($values); $i += 2) {
                         
-                $pair = array($values[$i]);
+                $pair = array($values[$i], $values[$i + 1]);
             
-                var_dump($pair);
                 
+                $pairs[] = "('" . implode("','", $pair) . "')"; 
             
                 // Execute the SQL query when $i is a multiple of 2 and not equal to 0
-                if (($i + 1) % 2 == 0 || $i == count($values) - 1)  {
-                    $sql = $sql_estabele ."(". implode(", ", $pair) . ")";
-            
+                if ($i % 2 == 0 && $i != 0) {
+                    $sql = $sql_estabele . implode(", ", $pairs);
                     
                     echo $sql . "\n";
             
@@ -462,16 +455,16 @@
                         $errorMessage = mysqli_error($conn);
                         die($errorMessage);
                     }
-
-                    $pair = array();
+                    $pairs = array();
                 }
             }
             
-            
+            $values = array();
+                        
         }else{
             echo "Failed to open the file.";
-        }
-    }
+            }
+}
 
     $queryAlterEmpresas =   'ALTER TABLE empresas ADD COLUMN capital_social DECIMAL(18,2);';
     $queryUpdateEmpresas =   'UPDATE  empresas

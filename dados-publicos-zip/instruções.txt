@@ -1,0 +1,2 @@
+Esta pasta é usada para instalar os arquivos .zip a pasta dados-publicos será usada para descompactar estes arquivos.
+Após isso ele irá autoaticamente tratar e inserir as informações obtidas dentro do banco de dados
