@@ -157,8 +157,8 @@
 
 
         $servername = "localhost";
-        $user = "root";
-        $pass ="Vinger10@";
+        $user = "Username";//Coloque neste campo seu usuario de conexão com o banco
+        $pass ="Senha";
         $banco = "cnpj";
         $conn = mysqli_connect($servername,$user, $pass, $banco);
 
